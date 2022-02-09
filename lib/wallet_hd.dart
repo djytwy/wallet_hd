@@ -58,6 +58,20 @@ class WalletHd {
     EthPrivateKey ethPrivateKey = EthPrivateKey.fromHex(privateKey);
     return ethPrivateKey;
   }
+  
+  /// ETH 导入助记词返回私钥(String类型) | ETH import mnemonic phrase and return private key （type: String）
+  static String ethMnemonicToPrivateKeyString(String mnemonic,
+    {String? derivePath}) {
+    String ethPath = (derivePath != null && derivePath.isNotEmpty)
+      ? derivePath
+      : WalletConfig.ethereumType["ETH"]!.path;
+    bitcoin_flutter.HDWallet hdWalletEth =
+    bitcoin_flutter.HDWallet.fromSeed(bip39.mnemonicToSeed(mnemonic))
+      .derivePath(ethPath);
+
+    String privateKey = hdWalletEth.privKey ?? '';
+    return privateKey;
+  }
 
   /// BTC 导入助记词返回私钥wif | BTC import mnemonic phrase and return private key wif
   static String btcMnemonicToPrivateKey(String mnemonic, {String? derivePath}) {
