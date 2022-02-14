@@ -24,8 +24,11 @@ Properties and functions:
   /// 导入助记词，返回[btc地址 , eth地址] | Import mnemonic words and return [btc address, eth address]
   static Future<Map<String, String>> getAccountAddress
 
-  /// ETH 导入助记词返回私钥 | ETH import mnemonic phrase and return private key
+  /// ETH 导入助记词返回私钥(EthPrivateKey类型) | ETH import mnemonic phrase and return private key (type: EthPrivateKey)
   static EthPrivateKey ethMnemonicToPrivateKey
+  
+  /// ETH 导入助记词返回私钥(String类型) | ETH import mnemonic phrase and return private key (type: String)
+  static String ethMnemonicToPrivateKeyString
 
   /// BTC 导入助记词返回私钥wif | BTC import mnemonic phrase and return private key wif
   static String btcMnemonicToPrivateKey
